@@ -4,7 +4,7 @@ import $ from 'jquery';
 import React from 'react';
 import { render } from 'react-dom';
 import NewsList from './NewsList.js'
-//import NewsItem from './NewsItem.js'
+import './css/app.css'
 
 
 render(<NewsList />, $('#content')[0]);
