@@ -2,7 +2,7 @@ import React from 'react'
 
 export default class Body extends React.Component {
     render() {
-        var data = [1, 2, 3, 4, 5];
+        var data = [1, 2, 3, 4];
         var data_column = data.map(function(d) {
             return (
                 <td key={d.toString()}>
@@ -15,6 +15,9 @@ export default class Body extends React.Component {
             <tbody>
                 <tr>
                     {data_column}
+                    <td>
+                        {this.props.data}
+                    </td>
                 </tr>
             </tbody>
         );
