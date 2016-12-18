@@ -8,7 +8,7 @@ import NewsHeader from './NewsHeader.js';
 import NewsItem from './NewsItem.js';
 import MyNewsItem from './MyNewsItem.js';
 
-import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from './actions'
+import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters, changeNews, NewsCategory } from './actions'
 import AddTodo from './components/AddTodo.js'
 import TodoList from './components/TodoList.js'
 import Footer from './components/Footer.js'
@@ -32,16 +32,25 @@ class NewsList extends React.Component {
 
      var Dropdown = AMUIReact.Dropdown;
     // Injected by connect() call:
-    const { dispatch, visibleTodos, visibilityFilter } = this.props
+    const { dispatch, visibleTodos, visibilityFilter, currentNews } = this.props
     return (
         <div className="newsList">
           <NewsHeader />
           <NewsItem item={testData} rank={1} />
           <MyNewsItem />
+
           <AMUIReact.Button>这是一个按钮</AMUIReact.Button>
-            <Dropdown title="下拉列表" btnStyle="primary">
-              <DropdownItem 
-                onClick={text => console.log("hello")}/>
+            <Dropdown title="下拉列表" btnStyle="primary" onClick={console.log('fang')}>
+              {NewsCategory.map(category =>           
+                <DropdownItem 
+                  key={category}
+                  currentNews={category}
+                  onChooseClick={text => {
+                      console.log(text);
+                      console.log("hou")
+                    }
+                  }/>
+                )}
             </Dropdown>
           <AddTodo
             onAddClick={text =>
@@ -78,7 +87,8 @@ function selectTodos(todos, filter) {
 function select(state) {
   return {
     visibleTodos: selectTodos(state.todos, state.visibilityFilter),
-    visibilityFilter: state.visibilityFilter
+    visibilityFilter: state.visibilityFilter,
+    currentNews: state.currentNews
   }
 }
 

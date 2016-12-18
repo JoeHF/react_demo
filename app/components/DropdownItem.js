@@ -8,13 +8,14 @@ export default class DropdownItem extends React.Component {
 		var Dropdown = AMUIReact.Dropdown;
 		return (
 			<Dropdown.Item
-				onClick={this.props.onClick}>
-				快乐的方式不只一种
+				onClick={this.props.onChooseClick(this.props.currentNews)}>
+				{this.props.currentNews}
 			</Dropdown.Item>
 		);
 	}
 }
 
 DropdownItem.propTypes = {
-	onClick : React.PropTypes.func.isRequired
+	onChooseClick : React.PropTypes.func.isRequired,
+	currentNews : React.PropTypes.string.isRequired
 }
