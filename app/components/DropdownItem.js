@@ -7,10 +7,11 @@ export default class DropdownItem extends React.Component {
 	render() {
 		var Dropdown = AMUIReact.Dropdown;
 		return (
-			<Dropdown.Item
-				onClick={this.props.onChooseClick(this.props.currentNews)}>
+			<option
+				value={this.props.currentNews}
+				>
 				{this.props.currentNews}
-			</Dropdown.Item>
+			</option>
 		);
 	}
 }

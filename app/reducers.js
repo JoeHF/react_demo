@@ -35,6 +35,7 @@ function todos(state = [], action) {
 }
 
 function currentNews(state = DefaultNewsCategory, action) {
+  console.log('currentNews', state, 'and action', action)
   switch (action.type) {
     case CHANGE_NEWS:
       return action.text;

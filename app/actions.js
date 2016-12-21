@@ -41,6 +41,7 @@ export function setVisibilityFilter(filter) {
 export function changeNews(text) {
 	return {
 		type: CHANGE_NEWS,
+        id: 5,
 		text
 	}
 }

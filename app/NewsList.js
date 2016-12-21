@@ -30,7 +30,31 @@ class NewsList extends React.Component {
        "url" : "http://www.latimes.com/business/technology/la-fi-0429-tn-marissa-mayer-severance-20160429-story.html"
      };
 
-     var Dropdown = AMUIReact.Dropdown;
+    var options = [
+      {value: 'g', label: 'GITHUB'},
+      {value: 'h', label: 'HACKER_NEWS'},
+      {value: 'i', label: 'INFO_Q'}
+    ];
+
+    var newslist = {
+      data: options,
+      onChange: function(value) {
+        console.log('当前值为：', value);
+        dispatch(changeNews(value))
+      },
+      maxHeight: 150,
+      btnStyle: 'secondary',
+      btnWidth: 120
+    };
+
+    var Selected = AMUIReact.Selected
+    var selectedInstance = (
+      <div>
+        <Selected {...newslist} />
+      </div>
+    );
+
+
     // Injected by connect() call:
     const { dispatch, visibleTodos, visibilityFilter, currentNews } = this.props
     return (
@@ -38,20 +62,10 @@ class NewsList extends React.Component {
           <NewsHeader />
           <NewsItem item={testData} rank={1} />
           <MyNewsItem />
+          <AMUIReact.ButtonToolbar>
+            {selectedInstance}
+          </AMUIReact.ButtonToolbar>
 
-          <AMUIReact.Button>这是一个按钮</AMUIReact.Button>
-            <Dropdown title="下拉列表" btnStyle="primary" onClick={console.log('fang')}>
-              {NewsCategory.map(category =>           
-                <DropdownItem 
-                  key={category}
-                  currentNews={category}
-                  onChooseClick={text => {
-                      console.log(text);
-                      console.log("hou")
-                    }
-                  }/>
-                )}
-            </Dropdown>
           <AddTodo
             onAddClick={text =>
               dispatch(addTodo(text))
